@@ -1,7 +1,7 @@
 import { faCamera, faTimes } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { get } from 'lodash-es';
-import { Fab, withStyles } from '@material-ui/core';
+import { Fab, Typography, withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Quagga from 'quagga';
 import React, { Component } from 'react';
@@ -22,12 +22,14 @@ class App extends Component {
    */
   state = {
     isCapturing: false,
+    isError: false,
   };
 
   onBeginCapture = () => {
     this.setState(
       {
         isCapturing: true,
+        isError: false,
       },
       () => {
         Quagga.init(
@@ -63,9 +65,9 @@ class App extends Component {
           if (sku) {
             window.location.href = `https://www.fls2u.com/ccrz__ProductDetails?sku=${sku}`;
           } else {
-            /* eslint-disable no-console */
-            console.error(`code: ${code}`, `sku: ${sku}`);
-            /* eslint-enable no-console */
+            this.setState({
+              isError: true,
+            });
           }
         });
       }
@@ -91,11 +93,16 @@ class App extends Component {
     /**
      * @constant
      */
-    const { isCapturing } = this.state;
+    const { isCapturing, isError } = this.state;
 
     /* eslint-disable jsx-a11y/media-has-caption */
     return (
       <main>
+        {isError && (
+          <Typography align="center">
+            Please hold the barcode closer and try again.
+          </Typography>
+        )}
         {isCapturing && (
           <div ref={this.root}>
             <video autoPlay className={classes.video} playsInline />
