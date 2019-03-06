@@ -63,7 +63,9 @@ class App extends Component {
           if (sku) {
             window.location.href = `https://www.fls2u.com/ccrz__ProductDetails?sku=${sku}`;
           } else {
+            /* eslint-disable no-console */
             console.error(`code: ${code}`, `sku: ${sku}`);
+            /* eslint-enable no-console */
           }
         });
       }
@@ -91,6 +93,7 @@ class App extends Component {
      */
     const { isCapturing } = this.state;
 
+    /* eslint-disable jsx-a11y/media-has-caption */
     return (
       <main>
         {isCapturing && (
@@ -111,6 +114,7 @@ class App extends Component {
         </Fab>
       </main>
     );
+    /* eslint-enable jsx-a11y/media-has-caption */
   }
 }
 
