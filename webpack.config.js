@@ -33,7 +33,7 @@ module.exports = {
         useShortDoctype: true,
       },
       template: path.resolve(__dirname, 'public/index.html'),
-      title: 'camera',
+      title: 'barcode-scanner',
     }),
   ],
   resolve: {

@@ -42,7 +42,8 @@
     "node": ">=8.0.0"
   },
   "license": "UNLICENSED",
-  "name": "camera",
+  "name": "barcode-scanner",
+  "repository": "https://github.com/jonathanrtuck/barcode-scanner",
   "scripts": {
     "build": "webpack --debug --display-error-details --display-reasons --mode=production --progress",
     "develop": "webpack-dev-server --mode=development"
